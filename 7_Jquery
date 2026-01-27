@@ -1,0 +1,116 @@
+✅ 1) What is jQuery?
+
+✅ Answer : jQuery is a fast, lightweight JavaScript library that simplifies:
+
+DOM manipulation
+event handling
+animations/effects
+AJAX calls
+cross-browser compatibility
+
+⭐ How to add jQuery in HTML (CDN)
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+-------------------------------------------------------------------------------------------------------------------------------------------- 
+✅ 2) jQuery Selectors
+
+Q2 What are jQuery selectors?
+✅ Answer : Selectors are used to select HTML elements and perform actions on them.
+
+Syntax:
+$("selector")
+
+⭐ Common selectors (Must know)
+
+$("#id")       // select by id
+$(".class")    // select by class
+$("p")         // select by tag
+
+
+Q3 (🔥 MMI). Difference between #id selector and .class selector?
+
+Answer:
+
+$("#box") selects element with id="box" (unique element)
+$(".box") selects all elements with class="box" (multiple possible)
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+✅ 3) DOM Manipulation & Events
+
+Q4 What is DOM manipulation?
+✅ Answer : Changing HTML content, attributes, styles dynamically using JavaScript/jQuery.
+
+⭐ Most used DOM methods (Must learn)
+
+1) Change text
+$("#msg").text("Hello Raj");
+
+2) Change HTML
+$("#msg").html("<b>Hello</b>");
+
+4) Add/Remove class
+$("#box").addClass("active");
+$("#box").removeClass("active");
+$("#box").toggleClass("active");
+
+5) CSS change
+$("#box").css("background", "yellow");
+
+
+Q5 Difference between .text() and .html()?
+✅ Answer:
+
+.text() → only text (tags treated as plain text)
+.html() → can insert HTML tags
+
+Example:
+
+$("#x").text("Hello"); // shows Hello
+$("#x").html("Hello"); // shows bold Hello
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+✅ 4) jQuery Effects
+
+Q7 (🔥 MMI). What are jQuery effects?
+
+jQuery effects are built-in methods to add animations like show/hide, fade, slide.
+
+Must know:
+$("#box").hide();
+$("#box").show();
+$("#box").toggle();
+
+$("#box").fadeIn();
+$("#box").fadeOut();
+$("#box").fadeToggle();
+
+$("#box").slideUp();
+$("#box").slideDown();
+$("#box").slideToggle();
+--------------------------------------------------------------------------------------------------------------------------------------------
+ ✅ 5) Basic AJAX with jQuery
+
+⭐ What is AJAX?
+✅ Answer (QC ready) : AJAX = Asynchronous JavaScript and XML
+It allows sending/receiving data from server without reloading the page.
+
+📌 Real use:
+Login validation
+Search suggestions
+Load products dynamically
+
+⭐ jQuery AJAX methods
+1\) $.ajax() (most powerful)
+2)$.get() (simple GET request)
+3\) $.post() (simple POST request)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Working of Jquery
+
+✅ jQuery works by selecting DOM elements using CSS selectors, wrapping them in a jQuery object, and providing easy methods to manipulate DOM,
+ handle events, perform effects, and make AJAX calls with cross-browser support.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
