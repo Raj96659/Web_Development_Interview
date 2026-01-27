@@ -1,0 +1,186 @@
+✅ 1) Git - Source Control Management (VERY IMPORTANT)
+
+Q1. What is Git?
+
+✅ Answer : Git is a Distributed Version Control System (DVCS) used to track code changes and collaborate with teams.
+
+📌 Why Git?
+track history
+rollback changes
+teamwork without conflict
+branching \& merging
+
+
+Q2. What is Version Control System (VCS)?
+
+✅ Answer : A system that manages file changes over time, so we can:
+see history
+restore old versions
+work together
+
+
+Q3. VCS vs CVCS vs DVCS (Common QC)
+
+✅ Answer (Winning):
+
+CVCS		DVCS
+Central server	No single central server
+Needs internet	Works offline
+Example: SVN	Example: Git
+
+📌 Why DVCS better?
+works offline
+faster
+safe backup in each system
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+✅ 2) Git Fundamentals (Must Know)
+
+Q4. What is repository?
+✅ Answer:
+A repository (repo) is a folder that contains project code + Git history.
+
+Q5. Git Installation \& Configuration (QC)
+
+After installing, set username/email:
+
+git config --global user.name "Raj"
+git config --global user.email "raj@gmail.com"
+
+Check:
+git config --list
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+✅ 3) Basic Git Commands (Most Asked)
+
+Q6. Initialize repo
+git init
+
+Q7. Check status
+git status
+
+Q8. Add files
+git add file.txt
+git add .
+
+Q9. Commit
+git commit -m "Added login page"
+
+Q10. View commits
+git log
+git log --oneline
+
+Q11. Difference: git add vs git commit?
+
+✅ Answer:
+git add → moves changes to staging
+git commit → saves changes permanently
+------------------------------------------------------------------------------------------------------------
+✅ 4) Git Branching and Merging (HIGH SCORING)
+
+Q12. What is a branch?
+
+✅ Answer : A branch is an independent line of development used to work on features without affecting main code.
+
+Q13. Create and switch branch
+
+git branch feature-login
+git checkout feature-login
+
+Shortcut:
+git checkout -b feature-login
+
+Q14. Merge branch
+
+git checkout main
+git merge feature-login
+
+Q15. Delete branch
+git branch -d feature-login
+
+⭐ Interview Answer
+
+✅ git checkout is older and multi-purpose (branches + files).
+✅ git switch is newer and only for switching branches, easier and safer.
+
+
+Q16. What is merge conflict?
+
+✅ Answer : Merge conflict happens when Git cannot automatically merge changes because same lines were modified in different branches.
+📌 How to resolve?
+open conflict file
+fix code manually
+add + commit
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+✅ 5) Remote Repositories (GitHub)
+
+Q44. What is remote repository?
+
+✅ Answer:
+Remote repo is a repo stored online (GitHub/GitLab) used for collaboration.
+
+Q45. Connect local repo to remote
+git remote add origin <repo-url>
+
+Check:
+git remote -v
+
+Q46. Push and Pull
+
+Push
+git push origin main
+
+Pull
+git pull origin main
+
+📌 Push vs Pull:
+
+push → local to remote
+pull → remote to local
+
+Q47. Clone a repo
+git clone <repo-url>
+
+----------------------------------------------------------------------------------------------------------------------
+✅ 6) Pull Requests (PR) (Must for QC)
+
+Q48. What is a Pull Request?
+
+✅ Answer (Winning):
+A Pull Request is a request to merge code changes from one branch into another (example: feature → main) after review.
+
+📌 Why PR?
+
+code review
+avoid bugs
+maintain quality
+team collaboration
+
+Q49. PR workflow (Simple)
+
+✅ Steps:
+
+create branch
+commit changes
+push branch
+create PR
+review + approve
+merge
+
+----------------------------------------------------------------------------------------------------------------------------
+ ✅ 7) .gitignore (Very common)
+
+Q50. What is .gitignore?
+
+✅ Answer:
+.gitignore is used to tell Git which files/folders should NOT be tracked.
+
+.env
+
+Q51. git fetch vs git pull
+✅ Answer:
+
+git fetch → downloads changes but does not merge
+git pull → fetch + merge
+
