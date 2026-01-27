@@ -1,0 +1,252 @@
+ ✅ 1) Introduction to CSS3
+
+CSS (Cascading Style Sheets) is used to style and layout HTML elements.
+
+Syntax:
+selector {
+  property: value;
+}
+
+Example:
+p {
+  color: red;
+  font-size: 16px;
+}
+
+p → selector
+color, font-size → properties
+red, 16px → values
+
+---------------------------------------------------------------------------------------
+✅ 2) Ways to Apply CSS (Interview Favorite ⭐⭐)
+
+1️⃣ Inline CSS (inside element)
+<h1 style="color: blue;">Hello</h1>
+✅ Quick but not recommended
+
+2️⃣ Internal CSS (inside <style>)
+<style>
+ h1 { color: green; }
+</style>
+✅ Good for small pages
+
+3️⃣ External CSS (best practice ⭐)
+<link rel="stylesheet" href="style.css">
+✅ Best for real projects
+✅ Reusable + clean
+
+
+Priority order:
+
+Inline CSS
+Internal CSS
+External CSS
+
+---------------------------------------------------------------------------------------
+✅ 3) CSS Selectors (Most Important ⭐⭐)
+
+Selectors choose which elements to style.
+
+Basic Selectors:
+
+Element selector
+p { color: red; }
+
+Class selector (most used ⭐)
+.box { background: yellow; }
+
+ID selector (unique)
+#main { padding: 20px; }
+
+Group selector
+h1, h2, p { font-family: Arial; }
+
+Universal selector
+ * {}
+
+📌 Interview must know:
+ID should be unique, class can be reused.
+
+-----------------------------------------------------------------------------------
+✅ 4) Styling Text and Fonts
+Q7 (🔥 MMI). How do you style text in CSS?
+
+Answer:
+p {
+  color: blue;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+  line-height: 1.6;
+}
+
+Q8 (⭐ MI). What are font properties?
+
+Answer:
+
+p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+---------------------------------------------------------------------------------------
+✅ 5) Box Model Basics (Most Important ⭐⭐)
+
+Every HTML element is treated as a box made of:
+Content
+Padding
+Border
+Margin
+
+Example:
+div {
+ width: 200px;
+ padding: 20px;
+ border: 2px solid black;
+ margin: 10px;
+}
+
+Quick meaning:
+
+Content = actual text/image area
+Padding = space inside border
+Border = outline
+Margin = space outside element
+
+📌 Interview line:
+Box model defines spacing and size of elements using content, padding, border and margin.
+
+---------------------------------------------------------------------------------------
+✅ 6) Colors and Backgrounds
+(🔥 MMI). Ways to define colors in CSS?
+
+Answer:
+
+color: red;
+color: #ff0000;
+color: rgb(255,0,0);
+color: rgba(255,0,0,0.5);
+
+(⭐ MI). Background properties?
+
+Answer:
+
+div {
+  background-color: yellow;
+  background-image: url("img.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+------------------------------------------------------------------------------------------
+ ✅ 7) Layout with CSS (Display, Position, Float) ⭐⭐
+
+✅ Display
+
+Most common display types:
+
+block :
+Takes full width
+Examples: div, p, h1
+
+inline :
+Takes only required space
+Examples: span, a
+
+inline-block :
+Inline but can set width/height
+
+span {
+ display: inline-block;
+ width: 100px;
+}
+
+(🔥 MMI). Explain position property.
+
+Answer:
+
+Position	Meaning
+static		default
+relative	relative to itself
+absolute	relative to nearest positioned parent
+fixed		relative to viewport
+sticky		mix of relative + fixed
+
+---------------------------------------------------------------------------------------
+✅ 8) Flexbox Layout (Most Important ⭐⭐⭐)
+
+Flexbox is a CSS layout model used to arrange elements in a row or column.
+It is best for one-dimensional layouts.
+
+Flexbox is used to:
+	Align items horizontally or vertically
+	Center elements easily
+	Create navbars, cards, rows
+
+
+.container {
+  display: flex;
+}
+
+🔥 MMI). Explain flex-direction.
+
+Answer:
+
+flex-direction: row;
+flex-direction: column;
+
+(🔥 MMI). Explain justify-content.
+
+Answer:
+
+justify-content: center;
+justify-content: space-between;
+justify-content: space-around;
+
+Aligns items along main axis.
+
+---------------------------------------------------------------------------------------
+ ✅ 9) CSS Grid Layout (Most Important ⭐⭐⭐)
+
+CSS Grid is a layout system used to create rows and columns.
+It is best for two-dimensional layouts.
+
+Grid is used to:
+	Create full page layouts
+	Control both rows and columns
+
+--------------------------------------------------------------------------------------
+ ✅ 9) Responsive Web Design (Most Important ⭐⭐⭐)
+
+Responsive design means:
+Website adjusts automatically to mobile, tablet, desktop.
+
+Responsive design makes web pages adapt to different screen sizes.
+Achieved using:
+	Flexible layouts
+	Media queries
+
+Media Queries :
+Used to apply CSS based on screen size.
+CSS rule to apply styles based on screen width/device.
+
+@media (max-width: 768px) {
+ body { background: red; }
+}
+👉 Screen ≤ 768px → CSS applies
+
+✅ Breakpoints (Most common)
+
+Breakpoints are screen widths where layout changes.
+
+Typical breakpoints:
+
+576px (mobile)
+768px (tablet)
+992px (laptop)
+1200px (desktop)
+
+
+
