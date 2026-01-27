@@ -1,0 +1,402 @@
+ ✅ 1) Introduction to JavaScript
+
+JavaScript is a single-threaded, interpreted, dynamically typed language used to create interactive web applications.
+It is synchronous by default but can handle asynchronous operations using callbacks, promises, and async/await.
+
+Key Points :
+
+What is Synchronous?
+Synchronous code runs line by line.
+Each task waits for the previous one to finish.
+
+What is Asynchronous?
+Asynchronous code does NOT block execution.
+Long-running tasks run in the background, and JS continues.
+
+What is Single-Threaded?
+JavaScript has only ONE call stack.
+It can execute only one task at a time
+
+Uses:
+
+DOM manipulation
+Event handling
+API calls
+
+-----------------------------------------------------------------------------------------------------------------------
+✅ 2) Variables (var, let, const) ⭐⭐
+
+>> What is var?
+
+var is the old way of declaring variables in JavaScript.
+
+Characteristics
+	Function scoped
+	Can be re-declared
+	Can be re-assigned
+	Hoisted (initialized as undefined)
+	Creates bugs → ❌ not recommended
+
+Example:
+
+var a = 10;
+var a = 20;   // allowed
+a = 30;       // allowed
+console.log(a); // 30
+
+
+Scope Issue
+if (true) {
+    var x = 5;
+}
+
+console.log(x); // 5 😱 (leaks outside block)
+
+
+>> What is let?
+
+let was introduced in ES6 to fix problems of var.
+
+🔑 Characteristics
+	Block scoped
+	Cannot be re-declared in same scope
+	Can be re-assigned
+	Hoisted but in Temporal Dead Zone (TDZ)
+
+Example
+
+let b = 10;
+b = 20;   // allowed
+// let b = 30; ❌ not allowed
+console.log(b); // 20
+
+Block Scope
+if (true) {
+ let y = 10;
+}
+console.log(y); // ❌ ReferenceError
+
+>> What is const?
+
+const is used to declare constant variables.
+
+Characteristics
+	Block scoped
+	Cannot be re-declared
+	Cannot be re-assigned
+	Must be initialized
+	Hoisted (TDZ)
+
+Example
+
+const PI = 3.14;
+// PI = 3.15; ❌ error
+
+Hoisting Difference (VERY IMPORTANT)
+
+>> var
+console.log(a);
+var a = 10;
+Output:
+
+undefined
+
+>> let / const
+console.log(b);
+let b = 10;
+
+❌ ReferenceError (TDZ)
+
+>> TDZ is the time between variable declaration and initialization where let and const cannot be accessed.
+
+-----------------------------------------------------------------------------------------------------------------------
+✅ 3) Data Types in JavaScript ⭐⭐
+
+Primitive types:
+
+string "Raj"
+number 10
+boolean true
+undefined
+null
+bigint
+symbol
+
+Non-primitive:
+object {}
+array []
+
+Example:
+
+let name = "Raj";      // string
+let marks = 90;        // number
+let isPass = true;     // boolean
+let x;                 // undefined
+let y = null;          // null
+
+-----------------------------------------------------------------------------------------------------------------------
+ ✅ 4) Operators ⭐
+
+>> Arithmetic:
+\+ - \* / %
+
+>> Comparison:
+== vs === ⭐⭐
+
+== checks value only (type conversion)
+=== checks value + type (recommended)
+
+Example:
+console.log(5 == "5");  // true
+console.log(5 === "5"); // false
+
+>> Logical:
+\&\& || !
+
+-----------------------------------------------------------------------------------------------------------------------
+✅ 5) What are Functions? Arrow Functions?
+
+Functions are reusable blocks of code.
+Arrow functions provide short syntax and lexical this.
+
+function add(a, b) {
+&nbsp; return a + b;
+}
+
+const multiply = (a, b) => a * b;
+console.log(add(2,3));
+console.log(multiply(2,3));
+
+Why Use Arrow Functions?
+Short \& Clean Syntax
+2.Arrow functions do not have their own this. Arrow functions inherit this from their parent scope.
+
+-----------------------------------------------------------------------------------------------------------------------
+✅ 6) Arrays + Methods ⭐⭐
+
+Array = list of values
+
+let nums = [1, 2, 3, 4];
+
+Important array methods:
+
+forEach (loop)
+nums.forEach(n => console.log(n));
+
+map (transform) ⭐⭐
+let doubled = nums.map(n => n \* 2);
+
+filter (condition) ⭐⭐
+let even = nums.filter(n => n % 2 === 0);
+
+reduce (accumulate) ⭐⭐
+let sum = nums.reduce((acc, n) => acc + n, 0);
+
+
+📌 Interview line:
+map returns new array, filter returns subset, reduce returns single value.
+
+-----------------------------------------------------------------------------------------------------------------------
+✅ 7) Callbacks ⭐⭐
+
+What is a Callback?
+A callback is a function passed as an argument to another function and executed later, usually after some task is completed.
+
+👉 Used mainly in asynchronous operations.
+
+Simple Example:
+function greet(name, callback) {
+&nbsp; console.log("Hello " + name);
+&nbsp; callback();
+}
+
+function sayBye() {
+&nbsp; console.log("Goodbye");
+}
+
+greet("Raj", sayBye);
+
+Callback Hell (🔥 VERY IMPORTANT)
+When callbacks are nested inside callbacks, making code:
+•	Hard to read
+•	Hard to debug
+•	Hard to maintain
+
+📌 Also called Pyramid of Doom
+
+Why Callback Hell is a Problem?
+❌ Difficult to read
+❌ Difficult to debug
+❌ Error handling becomes complex
+❌ Code grows horizontally
+
+How to Avoid Callback Hell? (Interview Point)
+•	Promises
+•	async / await
+
+-----------------------------------------------------------------------------------------------------------------------
+✅ 8) Promises ⭐⭐⭐
+
+>> What is a Promise?
+A Promise represents a value that will be available now, later, or never.
+A Promise has 3 states:
+•	Pending
+•	Fulfilled
+•	Rejected
+
+
+
+>> What is async/await?
+async/await is syntactic sugar over promises.
+It makes asynchronous code look synchronous and easier to read.
+
+Key Difference (Core Concept)
+👉 Both use Promises internally
+👉 async/await is NOT a replacement, it is a cleaner way to use promises
+
+Promises handle asynchronous operations using .then() and .catch(), while async/await is a cleaner syntax built 
+on top of promises that allows writing asynchronous code in a synchronous style with better readability and error handling.
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 9) Closures ⭐⭐ (Very Interview Important)
+
+A closure is created when a function remembers and accesses variables from its outer (parent) 
+function even after the parent function has finished execution.
+
+
+
+Uses of Closure (Interview Point)
+✔ Data hiding
+✔ Encapsulation
+✔ Counters
+✔ Private variables
+✔ Callbacks
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 10) IIFE (Immediately Invoked Function Expression) ⭐
+
+An IIFE is a function that runs immediately after it is defined.
+
+Used to:
+	Avoid global scope pollution
+	Create private variables
+---------------------------------------------------------------------------------------------------------------------------
+✅ 10) Call Stack ⭐⭐
+
+What is Call Stack?
+The Call Stack is a data structure that keeps track of function calls in JavaScript.
+👉 JavaScript executes code one function at a time using the call stack.
+🧠 Rule
+•	LIFO (Last In, First Out)
+
+Web APIs (Browser Feature)
+When JavaScript sees asynchronous code, it sends it to Web APIs:
+•	setTimeout
+•	setInterval
+•	DOM events
+•	fetch
+
+👉 JS does not wait for them.
+
+Callback Queue & Microtask Queue
+🔹 Callback Queue
+•	Stores callbacks from:
+o	setTimeout
+o	setInterval
+o	DOM events
+
+🔹 Microtask Queue (Higher Priority)
+•	Stores callbacks from:
+o	Promise.then
+o	catch
+o	finally
+o	async/await
+
+📌 Microtask Queue executes BEFORE Callback Queue
+
+What is Event Loop?
+The Event Loop continuously checks:
+
+1\.	Is Call Stack empty?
+2\.	If yes:
+o	Execute Microtask Queue
+o	Then execute Callback Queue
+👉 This is how JS handles asynchronous code despite being single-threaded.
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 11) DOM (Document Object Model)
+
+(🔥 MMI). What is DOM?
+Answer:
+DOM is a tree-like representation of HTML, allowing JavaScript to access and modify webpage elements.
+
+(🔥 MMI). Ways to select DOM elements?
+Answer:
+
+document.getElementById("id");
+document.querySelector(".class");
+document.querySelectorAll("p");
+
+(⭐ MI). How to modify DOM content?
+Answer:
+
+element.innerText = "Text";
+element.innerHTML = "<b>HTML</b>";
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 12) JSON ⭐⭐
+
+JSON is data format used in APIs.
+Example JSON:
+{ "name": "Raj", "age": 24 }
+
+JSON.parse()
+Converts JSON string → object
+let obj = JSON.parse('{"name":"Raj"}');
+
+JSON.stringify()
+Converts object → JSON string
+let str = JSON.stringify({name:"Raj"});
+
+-------------------------------------------------------------------------------------------------------------------------
+
+✅ 13) Fetch API ⭐⭐
+
+The Fetch API is used to make HTTP requests (GET, POST, PUT, DELETE) to a server and get data.
+👉 Mostly used to call APIs and work with JSON data.
+📌 It returns a Promise
+
+Fetch API Key Points (Interview Gold ⭐)
+✔ Fetch returns a Promise
+✔ Fetch does not reject on HTTP errors (404, 500)
+✔ Must manually check response.ok
+✔ Works with async/await
+✔ Replaces XMLHttpRequest
+
+-------------------------------------------------------------------------------------------------------------------------
+
+✅ 14) ES6 Features (Name at least 5)
+
+•  let / const
+•  Arrow functions
+•  Template literals
+•  Destructuring
+•  Spread operator
+•  Promises
+•  Modules
+
+
+✅ 15) Debugging and Testing JavaScript
+(⭐ MI). How do you debug JavaScript?
+
+Answer:
+console.log()
+browser dev tools
+breakpoints
+debugger keyword
+
+
+
+
+
+
