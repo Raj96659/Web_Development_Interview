@@ -1,0 +1,158 @@
+✅ 1) Introduction to Linux OS (Must for QC)
+
+Q1. What is Linux?
+
+✅ Answer : Linux is an open-source operating system based on Unix, used widely in servers, 
+	     development, and cloud because it is secure, stable, and fast.
+
+📌 Why Linux is used in IT?
+Free + open source
+Stable for servers
+Powerful CLI tools
+Better performance
+Easy automation with shell scripting
+
+
+Q2. What is Kernel in Linux?
+
+✅ Answer:
+Kernel is the core part of OS that manages:
+CPU
+memory
+devices
+processes
+
+---------------------------------------------------------------------------------------------
+✅ 2) Basic Linux Commands (SUPER IMPORTANT)
+
+Q6. How to check current directory?
+pwd
+
+Q7. List files and folders?
+ls
+ls -l
+ls -a
+
+Q8. Create folder and file?
+mkdir test
+touch a.txt
+
+Q9. Move inside folder?
+cd test   // go inside the folder
+cd ..     // go one directory back
+cd ~      // move directly to home directory
+cd /      // move to root directory
+
+Q10. Copy / Move / Rename?
+cp a.txt b.txt
+mv a.txt newname.txt                   // renames a file
+mv file.txt /path/to/destination/     // moves file to another directory
+
+Q11. Delete file/folder?
+rm a.txt           // delete file
+rm -r foldername   // delete folder
+
+⚠️ QC Warning: rm -r is dangerous.
+
+
+Q12. View file content?
+cat file.txt
+less file.txt    // read large file 
+head file.txt
+tail file.txt
+
+Q13. Search inside file?
+grep "error" app.log
+grep -i "error" app.log
+
+Q15. Check running processes?
+ps       // show running processes on current terminal only
+ps -ef   // show all running processes in system
+top      // live process running
+
+
+
+Q16. Check disk and memory?
+df -h
+free -h
+
+
+Q17. Permissions in Linux? (Very common)
+
+✅ Answer : Linux permissions control access to files:
+r read - 4
+w write  - 2
+x execute - 1
+
+Check:
+ls -l
+
+Change permissions:
+chmod 755 script.sh
+chmod +x script.sh
+📌 chmod +x makes script executable.
+
+chown - change ownership
+chown raj rajfile.txt
+
+
+Q18. What is sudo?
+
+✅ Answer:
+sudo runs command with admin privileges.
+Example:
+sudo apt update
+
+
+Q19. Basic Utilities
+echo - print text
+echo "hello"
+
+wc - word count
+wc file.txt
+wc -l file.txt   // line count
+
+sort - sort content
+
+uniq - remove duplicates
+
+
+✅ 3) nano / vi basic (editing files)
+
+QC sometimes asks “How to edit a file?”
+
+nano file.txt
+or
+vi file.txt
+
+--------------------------------------------------------------------------------------------
+✅ 4) Shell Scripting Fundamentals (QC + Interview)
+
+Q19. What is a shell script?
+✅ Answer (Winning) : A shell script is a file containing Linux commands that runs automatically to automate tasks.
+File example:
+backup.sh
+Run:
+bash backup.sh
+
+Q20. Basic shell script example
+\#!/bin/bash
+echo "Hello Raj"
+date
+📌 #!/bin/bash is called shebang. Shebang tells which shell to use:
+
+
+Q21. Variables in shell scripting
+name="Raj"
+echo "My name is $name"
+
+Q25. Why shell scripting is important?
+✅ Answer:
+
+Used for:
+deployment scripts
+automation
+server monitoring
+log cleanup
+backups
+
