@@ -1,0 +1,469 @@
+✅ 1) Introduction to HTTP
+
+HTTP = HyperText Transfer Protocol
+It is the communication rule between:
+Client (Browser / App) and
+Server (Backend / API)
+
+📌 Example:
+When you open google.com, your browser sends an HTTP request and Google sends an HTTP response.
+
+👉 HTTP is stateless (server doesn’t remember you automatically, each requests are independent of each other).
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 2) HTTP Methods (Most Important ⭐)
+
+HTTP methods define what action you want to perform.
+
+🔥 Common Methods:
+
+Method		Meaning			Used for
+
+GET		Read data		Fetch user details
+
+POST		Send data		Register / Login
+
+PUT		Update full data	Replace user profile
+
+PATCH		Update partial data	Update only phone number
+
+DELETE		Remove data		Delete user
+
+📌 Interview line:
+
+GET is used to retrieve data, POST is used to send data to server for creation.
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 3) HTTP Lifecycle (Request → Response Flow ⭐⭐)
+
+This is how HTTP works step-by-step:
+
+* User enters URL / clicks button
+* Browser sends HTTP Request
+* Server processes it (logic + DB)
+* Server sends HTTP Response
+* Browser shows output
+
+Example:
+Client → Request → Server
+Client ← Response ← Server
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 4) HTTP Status Codes (Most Important ⭐⭐)
+
+Status codes tell what happened with the request.
+🔥 Main categories:
+
+Code Range	Meaning
+
+1xx	Informational
+
+2xx	Success
+
+3xx	Redirection
+
+4xx	Client error
+
+5xx	Server error
+
+⭐ Most asked status codes:
+
+Code	Meaning
+
+200	OK (success)
+201	Created (POST success)
+204	No Content
+301	Permanent redirect
+302	Temporary redirect
+400	Bad Request
+401	Unauthorized (no login)
+403	Forbidden (no permission)
+404	Not Found
+500	Internal Server Error
+502	Bad Gateway
+
+📌 Interview line:
+
+401 is authentication issue, 403 is authorization issue.
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 5) HTTP Headers (Very Important ⭐)
+
+Headers are extra information sent with request/response.
+Examples:
+✅ Request headers:
+Content-Type: application/json
+Authorization: Bearer token
+Accept: application/json
+
+✅ Response headers:
+Set-Cookie
+Cache-Control
+Content-Type
+
+📌 Interview line:
+Headers carry metadata like authentication tokens, content type and caching rules.
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 6) HTTP Cookies (Very Important ⭐)
+
+Cookies are small data stored in browser sent to server with requests.
+
+Used for:
+✅ login sessions
+✅ remember user
+✅ tracking
+
+Example:
+
+Server sends cookie using Set-Cookie
+Browser stores it
+Next request automatically includes cookie
+
+📌 Interview line:
+Cookies help maintain session because HTTP is stateless.
+-------------------------------------------------------------------------------------------------------------------------
+✅ 7) Overview of HTML
+
+HTML (HyperText Markup Language) is used to create the structure of web pages.
+HTML is not a programming language, it is markup language.
+
+👉 HTML tells the browser:
+	what is a heading
+	what is text
+	where is image, form, button, etc.
+
+🔹 Example
+<h1>Hello World</h1>
+<p>This is my first webpage</p>
+
+🧠 Browser understands:
+	h1 → heading
+	p → paragraph
+
+-------------------------------------------------------------------------------------------------------------------------
+ ✅ 8) HTML5 Features (Interview ⭐)
+
+HTML5 introduced modern features like:
+✅ Semantic tags: <header> <nav> <section> <article> <footer>
+✅ Audio/video: <audio> <video>
+✅ Form validations
+✅ Local storage (localStorage, sessionStorage)
+✅ Geolocation API
+
+-------------------------------------------------------------------------------------------------------------------------
+ ✅ 9) DOM (Document Object Model) ⭐⭐
+
+DOM is a tree-like representation of HTML that allows JavaScript to access and modify web pages.
+
+👉 Browser converts HTML → DOM Tree
+Why DOM is Needed?
+Without DOM:
+❌ JavaScript cannot change HTML
+With DOM:
+✅ Change content
+✅ Change style
+✅ Handle events
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 10) Tags vs Elements vs Attributes ⭐⭐
+
+🔹 Tag
+A tag is a keyword enclosed in angle brackets (< >) that tells the browser what type of content it is.
+
+<p>     <!-- opening tag -->
+</p>    <!-- closing tag -->
+<img>   <!-- self-closing tag -->
+
+🔹 Element
+An element = opening tag + content + closing tag
+<p>Hello</p>
+
+🔹 Attribute
+Attributes provide extra information about elements.
+It is always written inside the opening tag.
+<input type="text" placeholder="Enter name">
+•	type → attribute
+•	"text" → value
+Common Attributes : id, class, src, href, style, title
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 11) Inline vs Block Elements (Interview Favorite ⭐⭐)
+
+🔹 Block Elements
+	Take full width
+	Start on new line
+	Can contain inline and block elements
+
+<div>Box 1</div>
+<div>Box 2</div>
+
+➡️ These will appear one below the other
+
+✔ Examples:
+div, p, h1–h6, form, section
+
+🔹 Inline Elements
+	Take only required width
+	Stay in same line
+	Cannot contain block elements
+
+<span>Hello</span>
+<span>World</span>
+
+➡️ These appear on the same line
+
+✔ Examples:
+span, a, img, input, strong
+
+-------------------------------------------------------------------------------------------------------------------------
+
+📝 12) HTML Forms (Very Important ⭐⭐)
+
+✅ 1) Form Element
+Forms are used to collect user input.
+
+<form action="/login" method="POST">
+ <input type="text" name="username">
+ <button type="submit">Login</button>
+</form>
+
+----------------------------------------------
+✅ 2) Form Attributes (action, method) ⭐⭐
+
+action :
+Defines WHERE the form data is sent.
+<form action="/login">
+➡️ Data goes to /login
+
+method
+Defines HOW data is sent.
+<form method="POST">
+
+-----------------------------------------------
+✅ 3) Input Elements + Types ⭐⭐
+
+Common input types:
+<input type="text">
+<input type="email">
+<input type="password">
+<input type="number">
+<input type="date">
+<input type="checkbox">
+<input type="radio">
+<input type="file">
+
+📌 Interview point:
+Using correct input types improves validation and mobile keyboard behavior.
+
+----------------------------------------------------
+✅ 4) Label Element (Important for accessibility ⭐)
+
+<label for="email">Email</label>
+<input id="email" type="email">
+
+📌 Why label is important?
+✅ improves usability
+✅ clicking label focuses input
+✅ accessibility support
+
+----------------------------------------------------
+✅ 5) Textarea
+
+For multi-line text:
+<textarea rows="4" cols="30"></textarea>
+
+----------------------------------------------------
+✅ 8) HTML5 Form Validation ⭐⭐
+
+Built-in validation using attributes:
+required
+minlength
+maxlength
+pattern
+min, max
+
+Example:
+<input type="email" required>
+<input type="password" minlength="6" required>
+
+🔥 GET vs POST (Most Important Interview Question ⭐⭐)
+
+Feature			GET		POST
+
+Purpose			Fetch data	Send data
+
+Data visible in URL     Yes		No
+
+Security		Less secure	More secure
+
+Best for		search, filters	login, register
+
+Data size		limited		large
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 13) Web Storage ⭐⭐
+
+HTML5 introduced Web Storage API to store data inside the browser.
+👉 It stores data as key–value pairs
+
+🔹 What is localStorage?
+	Stores data permanently in browser
+	Data remains even after browser restart
+
+localStorage.setItem("username", "Raj");
+let user = localStorage.getItem("username");
+console.log(user); // Raj
+
+🔹 Use Cases
+	Theme (dark/light)
+	Remember username
+	User preferences
+
+🔹 What is sessionStorage?
+	Stores data temporarily
+	Data removed when tab/browser closes
+
+sessionStorage.setItem("otp", "1234");
+sessionStorage.getItem("otp");
+
+🔹 Use Cases
+	OTP
+	Temporary form data
+
+-------------------------------------------------------------------------------------------------------------------------
+✅ 14) Geolocation (HTML5 API) ⭐
+
+Used to get user location (with permission).
+📌 Important:
+Works only on HTTPS
+Needs user permission
+
+-------------------------------------------------------------------------------------------------------------------------
+❓ Q2. What are semantic tags? Give examples
+
+Answer:
+Semantic tags clearly describe the meaning of content.
+Semantic HTML tags are tags that clearly describe their meaning and purpose to both:
+•  the browser
+•  the developer
+•  search engines (SEO)
+•  screen readers (accessibility)
+
+❌ Non-semantic example
+
+<div id="header">
+<div id="nav">
+<div id="content">
+<div id="footer">
+
+Here, a browser does not understand what these sections represent.
+
+✅ Semantic example
+
+<header>
+<nav>
+<main>
+<footer>
+Now the browser understands the structure and role of each section.
+
+Common Semantic Tags
+
+Tag		Meaning
+<header>	Top section of page
+<nav>		Navigation links
+<main>		Main content
+<section>	Logical section
+<article>	Independent content
+<aside>		Sidebar content
+<footer>	Bottom section
+
+
+
+Why important?
+
+1\. Better Readability
+Code becomes self-explanatory.
+
+2\. SEO (Search Engine Optimization)
+Search engines can rank content better when structure is clear.
+
+3\. Accessibility
+Screen readers understand page structure → helps visually impaired users.
+
+4\. Easy Maintenance
+Developers can quickly understand and modify code.
+
+-------------------------------------------------------------------------------------
+#### ❓ Q3. Difference between <div> and <section>?
+
+Answer:
+
+<div> → non-semantic container
+
+ Non-semantic
+ Used only for grouping or styling
+ Has no meaning
+
+
+
+<section> → semantic grouping of related content
+
+ Semantic
+ Represents a logical section of content
+ Usually has a heading
+
+
+
+📌 QC expects: Use section when content has meaning.
+
+
+
+------------------------------------------------------------------------------------
+#### ❓ id vs class ?
+
+id
+•	Unique
+•	Used for one element only
+•	High CSS priority
+•	Used heavily in JavaScript
+
+Example:
+
+<h1 id="mainTitle">Welcome</h1>
+
+CSS:
+
+\#mainTitle {
+
+&nbsp; color: blue;
+
+}
+
+class
+•	Reusable
+•	Can be applied to multiple elements
+•	Used for styling groups
+
+Example:
+
+<p class="highlight">Text 1</p>
+
+<p class="highlight">Text 2</p>
+
+
+
+CSS:
+
+.highlight {
+
+&nbsp; color: red;
+
+
+
+
+
+
+
+
+
