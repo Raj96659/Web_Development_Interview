@@ -1,0 +1,233 @@
+Reactive Programming
+
+1️⃣ What is Reactive Programming?
+Answer:
+Reactive programming is a paradigm focused on asynchronous, non-blocking, event-driven data processing where the system reacts 
+to data streams and changes rather than pulling data synchronously.
+
+Example (Conceptual):
+Flux<Integer> numbers = Flux.just(1, 2, 3);
+numbers.subscribe(System.out::println);
+
+Example:
+Mono<String> mono = Mono.just("Hello");
+Flux<Integer> flux = Flux.just(1, 2, 3);
+
+
+2️⃣ What is the Reactive Manifesto?
+Answer:
+The Reactive Manifesto defines systems that are:
+
+Responsive – fast and consistent responses
+Resilient – stay responsive under failures
+Elastic – scale under load
+Message-Driven – async communication
+
+These principles help build scalable and fault-tolerant systems.
+
+3️⃣ What are Reactive Streams?
+Answer:
+Reactive Streams is a standard for async stream processing with backpressure.
+
+Core Interfaces:
+Publisher
+Subscriber
+Subscription
+Processor
+
+Backpressure ensures the consumer controls how much data it can handle.
+
+4️⃣ Reactive Programming in Java – how is it implemented?
+Answer:
+In Java, reactive programming is implemented using libraries like:
+Project Reactor
+RxJava
+
+They provide types like:
+Mono<T> → 0 or 1 value
+Flux<T> → 0 to N values
+Used heavily in Spring WebFlux.
+
+5️⃣ Reactive Programming vs Traditional Programming
+Traditional		Reactive
+Blocking			Non-blocking
+Synchronous		Asynchronous
+Thread-per-request	Event-driven
+
+
+ Networking & Java Socket Programming
+ 
+6️⃣ What is socket programming?
+Answer:
+Socket programming enables communication between two machines over a network using IP address and port number.
+
+7️⃣ What is java.net.ServerSocket or What is ServerSocket?
+Answer:
+ServerSocket is used on the server side to:
+Listen for client requests
+Accept incoming socket connections
+
+ServerSocket server = new ServerSocket(8080);
+Socket client = server.accept();
+
+8️⃣ How does a Java Socket Client work?
+Answer:
+A socket client:
+Connects to server IP + port
+Sends request via OutputStream
+Reads response via InputStream
+
+Socket socket = new Socket("localhost", 8080);
+
+9️⃣ TCP vs UDP?
+Answer:
+TCP							UDP
+Transmission Control Protocol  User Datagram Protocol
+Reliable						Unreliable
+Connection-oriented				Connectionless
+Slower						Faster
+Used in HTTP					Used in streaming
+
+Answer:
+Server uses ServerSocket
+Client uses Socket
+Data sent via streams
+
+🐞 Debugging using IntelliJ IDEA
+ 
+🔟 What is debugging?
+Answer:
+Debugging is the process of finding and fixing defects by executing code step-by-step.
+
+1️⃣1️⃣ What are breakpoints?
+Answer:
+Breakpoints pause program execution at a specific line so developer can inspect:
+Variables
+Call stack
+Program flow
+
+1️⃣2️⃣ Step Over vs Step Into vs Step Out?
+Action		Meaning
+Step Over	Execute method without entering
+Step Into	Go inside method
+Step Out		Exit current method
+
+1️⃣3️⃣ What is Watch in debugging?
+Answer:
+Watch allows monitoring specific expressions or variables dynamically during debugging.
+
+1️⃣4️⃣ Debug Console vs Variables?
+Answer:
+Variables → Current scope values
+Debug Console → Evaluate expressions & execute code at runtime
+
+🔍 Reverse Engineering
+
+1️⃣5️⃣ What is reverse engineering?
+Answer:
+Reverse engineering is the process of analyzing an existing system to understand its design, logic, or behavior without original documentation.
+
+1️⃣6️⃣ Goals of reverse engineering?
+Answer:
+Understand legacy code
+Fix bugs
+Improve performance
+Security analysis
+
+1️⃣7️⃣ Steps in reverse engineering?
+Answer:
+Code analysis
+Control flow analysis
+Data flow analysis
+Documentation recovery
+
+1️⃣8️⃣ Tools used?
+Answer:
+IDE debuggers
+Bytecode viewers
+Decompilers (JD-GUI)
+
+✅ TDD, JUnit & Mockito
+
+1️⃣9️⃣ What is TDD?
+Answer:
+Test-Driven Development is a process where:
+Write failing test
+Write minimal code
+Refactor
+
+👉 Red → Green → Refactor
+
+2️⃣0️⃣ What is unit testing?
+Answer:
+Unit testing verifies individual units of code (methods/classes) in isolation.
+
+2️⃣1️⃣ Line vs Branch Coverage?
+Answer:
+Line coverage → executed lines
+Branch coverage → executes all decision paths (if/else)
+Branch coverage is more reliable.
+
+2️⃣2️⃣ What is Arrange-Act-Assert?
+Answer:
+A testing pattern:
+Arrange → setup
+Act → execute
+Assert → verify result
+
+2️⃣3️⃣ JUnit assertion types?
+Answer:
+Common assertions:
+assertEquals
+assertTrue
+assertNotNull
+assertThrows
+Used in JUnit.
+
+2️⃣4️⃣ What is Mockito?
+Answer:
+Mockito is a mocking framework used to simulate dependencies during unit testing.
+
+2️⃣5️⃣ Mock vs Stub vs Spy?
+Answer:
+Type	Purpose
+Mock	Verifies interactions
+Stub		Returns predefined data
+Spy		Partial mock, real + fake
+
+📝 Logging (Log4J & SLF4J)
+
+2️⃣6️⃣ Why logging is important?
+Answer:
+Logging helps in:
+Debugging
+Monitoring
+Auditing
+Production issue analysis
+
+2️⃣7️⃣ What is Log4J?
+Answer:
+Log4J is a Java logging framework that allows configurable, asynchronous logging.
+
+2️⃣8️⃣ What are appenders?
+Answer:
+Appenders define where logs go:
+ConsoleAppender
+FileAppender
+RollingFileAppender
+
+3️⃣0️⃣ What is SLF4J?
+Answer:
+SLF4J is a logging abstraction that allows switching logging frameworks (Log4J, Logback) without code changes.
+
+3️⃣1️⃣ SLF4J binding?
+Answer:
+SLF4J requires a binding at runtime to connect with an actual logging framework like Log4J2.
+
+3️⃣2️⃣ Logging best practices?
+Answer:
+Use proper log levels
+Avoid logging sensitive data
+Don’t log inside loops
+Use parameterized logs
+
