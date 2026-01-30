@@ -1,0 +1,216 @@
+Multithreading
+
+⭐⭐⭐ MOST MOST IMPORTANT
+
+1️⃣ What is a Thread in Java?
+Answer (Interview-Winning):
+
+A thread is a lightweight unit of execution within a process. Java supports multithreading to perform multiple tasks concurrently within a single program, 
+improving CPU utilization and responsiveness.
+
+Example:
+For example, in a web application, one thread handles a user request while another thread processes database operations.
+
+Contrast line:
+A process has its own memory, but threads share the same memory.
+
+2️⃣ How do you create a thread in Java?
+Answer:
+
+There are two ways:
+a. Extending Thread class
+
+Creating Thread using Thread class
+class MyThread extends Thread {
+
+    public void run() {
+        System.out.println("Thread is running using Thread class");
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.start();   // starts a new thread
+    }
+}
+
+What to say in interview (1 line):
+“Here I extend the Thread class and override the run method. Calling start() creates a new thread and internally invokes run().”
+
+b. Implementing Runnable interface
+
+Creating Thread using Runnable interface (PREFERRED)
+
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Thread is running using Runnable interface");
+    }
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable());
+        t1.start();   // starts a new thread
+    }
+}
+
+What to say in interview (1 line):
+“Runnable is preferred because it allows the class to extend another class and separates task logic from thread management.”
+
+Preferred: Runnable (better design).
+
+
+3️⃣ Difference between Thread class and Runnable interface?
+Answer:
+
+Thread Class			Runnable Interface
+
+Extends Thread class		Implements Runnable
+Cannot extend another class	Can extend another class
+Tightly coupled to threading	Better design, loose coupling
+Less flexible			More flexible & preferred
+
+Example:
+In real projects, we use Runnable so the class can still extend another class while running in a thread.
+
+4️⃣ What are the states of a Thread?
+Answer:
+
+Java thread lifecycle includes:
+ State			Meaning
+-New			Thread created
+-Runnable		Ready to run
+-Running			Executing
+-Blocked / Waiting	Waiting for resource
+-Terminated		Finished
+
+5️⃣ What is Multithreading?
+
+Answer:
+Multithreading is the ability of a CPU to execute multiple threads concurrently, sharing the same memory space, to improve performance and responsiveness.
+
+Example:
+In a banking system, one thread can handle balance inquiry while another processes transactions.
+
+⭐⭐ MOST IMPORTANT
+
+6️⃣ Difference between start() and run()?
+Answer:
+
+start() → creates a new thread and calls run() internally
+run() → executes like a normal method
+
+👉 Golden line:
+Calling run() directly does not create a new thread.
+
+7️⃣ What is Concurrency?
+Answer:
+Concurrency means multiple tasks make progress at the same time. Tasks may not execute simultaneously but overlap in execution.
+
+8️⃣ What is Synchronization?
+Answer:
+Synchronization ensures that only one thread accesses a shared resource at a time to avoid data inconsistency.
+
+Example:
+When multiple threads try to update the same bank account balance, synchronization prevents incorrect results.
+
+Contrast line:
+Without synchronization, race conditions can occur.
+
+⭐⭐⭐ MOST MOST IMPORTANT (Concurrency Problems)
+
+🔟 What is Deadlock?
+Answer:
+
+Deadlock occurs when two or more threads wait forever for each other’s resources.
+
+4 Necessary Conditions:
+
+Mutual Exclusion
+Hold and Wait
+No Preemption
+Circular Wait
+
+Example:
+Thread A holds Lock 1 and waits for Lock 2, while Thread B holds Lock 2 and waits for Lock 1.
+
+👉 Interview trick:
+Deadlock can be prevented by breaking any one of these conditions.
+
+1️⃣1️⃣ What is Livelock?
+Answer:
+Livelock occurs when threads are active but unable to make progress because they keep responding to each other.
+
+Example:
+Two threads keep retrying to give up a resource to each other, resulting in no task completion.
+
+👉 Difference line:
+
+Deadlock = threads stuck
+Livelock = threads active but useless
+
+1️⃣2️⃣ Difference between Deadlock and Livelock?
+Answer:
+
+Deadlock			Livelock
+Threads blocked	Threads running
+No CPU usage		High CPU usage
+Waiting forever		Continuously changing state
+
+⭐⭐⭐ MOST MOST IMPORTANT (Producer–Consumer)
+
+1️⃣3️⃣ What is Producer–Consumer Problem?
+
+Answer:
+It’s a classic concurrency problem where:
+Producer produces data
+Consumer consumes data
+Both share a common buffer
+
+Synchronization ensures:
+Producer doesn’t overfill
+Consumer doesn’t consume empty buffer
+
+Example:
+Definition:
+Producer generates log messages, and Consumer processes them asynchronously.
+
+Example:
+In this system, the application thread produces logs while a separate thread writes them to storage.
+
+Contrast line:
+BlockingQueue handles synchronization internally, so we don’t need wait or notify.
+
+1️⃣4️⃣ How is Producer–Consumer solved in Java?
+
+Answer:
+Using:
+
+wait()
+notify() / notifyAll()
+Synchronized blocks
+
+👉 Modern approach:
+Use BlockingQueue from java.util.concurrent package.
+
+⭐⭐ MOST IMPORTANT
+
+1️⃣5️⃣ What is wait() vs sleep()?
+Answer:
+
+wait()					sleep()
+Releases lock				Does NOT release lock
+Used in synchronization		Used for delay
+part of Object class		part of Thread class
+
+1️⃣6️⃣ What is volatile keyword?
+Answer:
+volatile ensures latest value is read by all threads, no caching, does not guarantee atomicity, It guarantees visibility.
+
+
+⭐ IMPORTANT
+
+1️⃣8️⃣ What is Race Condition?
+Answer:
+Occurs when multiple threads access shared data simultaneously and the outcome depends on thread execution order.
+
+
+What is thread starvation?
+Answer:
+When a thread never gets CPU time due to priority or lock issues.
