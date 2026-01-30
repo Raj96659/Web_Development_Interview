@@ -1,0 +1,399 @@
+Functional Programming
+
+1) Functional Programming (Java 8)
+
+⭐1. What is Functional Programming?
+Answer:
+Functional programming is a style where we write code using functions as first-class objects, focus on immutability, and avoid changing shared state. In Java, it’s supported mainly using lambda expressions, functional interfaces, and streams.
+
+⭐2. Why functional programming is useful?
+Answer:
+It makes code:
+cleaner and shorter
+easier to read
+easier to parallelize
+less bug-prone because we avoid modifying data
+
+⭐3. Is Java fully functional?
+Answer:
+No. Java is object-oriented primarily, but from Java 8 it supports functional programming features like lambdas and streams.
+
+⭐4. What is immutability in functional programming?
+Answer:
+Immutability means once a value/object is created, it cannot be changed. Instead of modifying, we create a new value.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+2) Functional Interface (Very Important)
+
+⭐5. What is a Functional Interface?
+Answer:
+A functional interface is an interface with exactly one abstract method.
+It can have multiple default/static methods, but only one abstract.
+
+Example:
+@FunctionalInterface
+interface Demo {
+    void show(); // only 1 abstract method
+}
+
+⭐6. Why @FunctionalInterface annotation is used?
+Answer:
+It ensures the interface remains functional. If someone adds another abstract method, it gives compile-time error.
+
+⭐7. Can a functional interface have default methods?
+Answer:
+Yes. It can have any number of default and static methods.
+
+⭐8. Examples of built-in functional interfaces?
+Answer:
+Predicate<T> → returns Boolean   (test)
+Function<T,R> → converts T to R  (apply)
+Consumer<T> → takes input, returns nothing  (accept)
+Supplier<T> → returns output, takes nothing (get)
+
+⭐9. Difference between Predicate and Function?
+Answer:
+Predicate → used for conditions / filtering, returns boolean
+Function → used for transformation, returns value
+
+⭐10. Why we need Functional Interface
+Answer : We need functional interfaces because they provide a single abstract method, which allows Java to use lambda expressions 
+and pass behavior as an argument without ambiguity.
+
+---------------------------------------------------------------------------------------------------------------------
+3) Lambda Expressions
+
+⭐11. What is Lambda Expression?
+Answer:
+Lambda is short form of method(anonymous function).
+Lambda is a short way to implement a functional interface without creating a class.
+Concise way to implement functional interface.
+
+Example:
+Runnable r = () -> System.out.println("Hello");
+
+⭐12. Why lambda was introduced?
+Answer:
+To reduce boilerplate code and support functional programming in Java.
+
+⭐13. Syntax of lambda?
+Answer:
+(parameters) -> expression/body
+(parameters) -> {statements}
+
+Example:
+ 	(a, b) -> a + b
+ 	x -> x*x
+ 	() -> System.out.println("Hello")
+
+⭐14. Can lambda be used without functional interface?
+Answer:
+No. Lambda always needs a functional interface type to work.
+
+
+⭐15. Can lambda access local variables?
+Answer:
+Yes, but local variables must be effectively final (not modified after initialization).
+
+---
+4) Optional Class (VERY Important)
+
+Optional class is container object used to avoid NullPointerException.
+It helps when value may be null.
+
+Difference between of(), ofNullable(), empty()?
+
+✅ Answer:
+Optional.of(value) → throws NullPointerException if value is null
+Optional.ofNullable(value) → safe even if value is null
+Optional.empty() → returns empty optional
+
+   Optional<String> a = Optional.ofNullable(null); // OK
+// Optional<String> b = Optional.of(null); // ❌ NPE
+
+---
+5) Method Reference (Syntax)
+
+✅ What is Method Reference?
+Method reference is a shorter way to write lambda when you are just calling an existing method.
+
+Types of Method Reference
+
+✅ 1) Static method reference
+ClassName::staticMethod
+
+✅ 2) Instance method reference
+object::method
+
+✅ 3) Constructor reference
+ClassName::new
+
+---
+6) Stream API (Most Asked)
+
+✅ What is Stream?
+A Stream is used to process data from a collection (List/Set) in a clean way.
+
+📌 Stream does NOT store data
+✅ It only processes data.
+
+Why use Stream?
+less code
+clean logic
+easy filtering/mapping
+no manual loops needed
+
+Example List:
+List<Integer> nums = Arrays.asList(1,2,3,4,5,6);
+
+With stream, we can say:
+filter even numbers
+convert them
+print/store result
+
+✅ Stream basic structure :
+collection.stream()
+    .intermediateOperations()
+    .terminalOperation();
+
+---
+ 7) Intermediate Operations (Lazy)
+
+✅ What are Intermediate Operations?
+Intermediate operations are steps in between.
+📌 They return a Stream again so we can chain more steps.
+📌 They are lazy → they don’t execute until terminal operation is called.
+
+Common Intermediate Operations
+✅ filter() → select elements
+✅ map() → change elements
+✅ sorted() → sort
+✅ distinct() → remove duplicates
+✅ limit() → take first few
+✅ skip() → skip first few
+
+Example
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1,2,3,4,5,6);
+
+        list.stream()
+            .filter(x -> x % 2 == 0)
+            .map(x -> x * x)
+            .forEach(System.out::println);
+    }
+}
+---
+8) Terminal Operations (Eager)
+
+✅ What are Terminal Operations?
+They end the stream and give final result.
+
+Common Terminal operations:
+✅ forEach() → print/perform action
+✅ collect() → store result into List/Set/Map
+✅ count() → count elements
+✅ reduce() → sum/product
+✅ min(), max()
+
+Example
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> nums = Arrays.asList(10,20,30,40);
+
+        long c = nums.stream().count(); // terminal
+        System.out.println(c); // 4
+    }
+}
+
+---
+9) Collectors (Most Important)
+
+✅ What is Collectors?
+It converts stream back into a collection like List/Set/Map
+Collectors is used to collect stream output into:
+✅ List
+✅ Set
+✅ Map
+and do grouping/counting
+
+✅ Example: collect to List
+import java.util.*;
+import java.util.stream.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> nums = Arrays.asList(1,2,3,4,5,6);
+
+        List<Integer> evenList = nums.stream()
+                .filter(x -> x % 2 == 0)
+                .collect(Collectors.toList());
+
+        System.out.println(evenList); // [2, 4, 6]
+    }
+}
+
+✅ Example: collect to Set (removes duplicates)
+import java.util.*;
+import java.util.stream.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> nums = Arrays.asList(10,10,20,30,30);
+
+        Set<Integer> unique = nums.stream()
+                .collect(Collectors.toSet());
+
+        System.out.println(unique); // [20, 10, 30]
+    }
+}
+
+✅ Example: groupingBy() (interview favorite)
+
+Group names by first letter:
+
+import java.util.*;
+import java.util.stream.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Raj", "Ravi", "Amit", "Anu");
+
+        Map<Character, List<String>> group =
+                names.stream()
+                        .collect(Collectors.groupingBy(x -> x.charAt(0)));
+
+        System.out.println(group);
+    }
+}
+
+
+Output:
+
+{A=[Amit, Anu], R=[Raj, Ravi]}
+
+---
+10) Parallel Stream
+
+✅ What is Parallel Stream?
+Parallel stream runs stream operations using multiple threads.
+
+How to use?
+list.parallelStream()
+
+Example
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8);
+
+        nums.parallelStream()
+            .forEach(System.out::println);
+    }
+}
+📌 Important:
+❌ order may change
+✅ faster for big data
+
+---
+11) Date and Time API (java.time)
+
+✅ Why java.time API?
+Old Date/Calendar were confusing.
+New API is:
+✅ easy
+✅ immutable
+✅ thread-safe
+
+✅ LocalDate (only date)
+import java.time.*;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDate d = LocalDate.now();
+        System.out.println(d);
+    }
+}
+
+✅ LocalTime (only time)
+import java.time.*;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalTime t = LocalTime.now();
+        System.out.println(t);
+    }
+}
+
+✅ LocalDateTime (date + time)
+import java.time.*;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.now();
+        System.out.println(dt);
+    }
+}
+
+✅ Add/Subtract days
+LocalDate today = LocalDate.now();
+System.out.println(today.plusDays(5));
+System.out.println(today.minusDays(2));
+
+---
+✅ 7) Reflection API (Simple)
+✅ What is Reflection?
+
+Reflection means:
+👉 Java can get class details at runtime
+like:
+
+class name
+methods
+fields
+
+Used in frameworks like:
+✅ Spring
+✅ Hibernate
+
+✅ Reflection Example (basic)
+class Student {
+    public void show() { 
+        System.out.println("Hello");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+
+        Class c = s.getClass();  // reflection
+        System.out.println("Class Name: " + c.getName());
+    }
+}
+
+
+-----------------------------------------------------------------------
+
+Q18. Difference between filter() and map()?
+
+Answer:
+filter() → Select elements (boolean)
+map() → Transform elements
+
+filter → reduce size  
+map → change value
+
+Q19. Difference between map() and flatMap()?
+
+Answer:
+map() → One-to-one transformation
+flatMap() → Flattens nested structures
+
+Used heavily with collections of collections.
+
+map() transforms elements, filter() selects elements, and collect() converts the stream back to a collection.
