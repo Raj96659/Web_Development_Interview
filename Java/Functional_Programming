@@ -68,10 +68,10 @@ Yes. It can have any number of default and static methods.
 
 ⭐8. Examples of built-in functional interfaces?
 Answer:
-Predicate<T> → returns Boolean   (test)
-Function<T,R> → takes input, returns output  (apply)
-Consumer<T> → takes input, returns nothing  (accept)
-Supplier<T> → returns output, takes nothing (get)
+Predicate<T> → returns Boolean   (test)                    # Predicate<Integer> p = x -> x > 10;
+Function<T,R> → takes input, returns output  (apply)       # Function<Integer, Integer> f = x -> x * 2;
+Consumer<T> → takes input, returns nothing  (accept)       # Consumer<String> c = s -> System.out.println(s);
+Supplier<T> → returns output, takes nothing (get)          # Supplier<Integer> s = () -> 100;
 
 ⭐9. Difference between Predicate and Function?
 Answer:
@@ -93,6 +93,14 @@ Concise way to implement functional interface.
 
 Example:
 Runnable r = () -> System.out.println("Hello");
+
+Instead of:
+Runnable r = new Runnable() {
+    public void run() {
+        System.out.println("Hello");
+    }
+};
+
 
 ⭐12. Why lambda was introduced?
 Answer:
