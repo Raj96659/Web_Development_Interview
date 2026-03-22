@@ -1,10 +1,26 @@
+
+Major Features in Java 8
+
+👉 Java 8 was a game changer — it introduced functional programming concepts.
+
+Key features:
+
+Lambda Expressions → write shorter code
+Functional Interfaces → single abstract method interfaces
+Stream API → process collections easily
+Default & Static methods in interfaces
+Optional class → avoid null issues
+Date & Time API (java.time) → better than old Date
+
+---------------------------------------------------------------------------------------------------------------------------
 Functional Programming
 
 1) Functional Programming (Java 8)
 
 ⭐1. What is Functional Programming?
 Answer:
-Functional programming is a style where we write code using functions as first-class objects, focus on immutability, and avoid changing shared state. In Java, it’s supported mainly using lambda expressions, functional interfaces, and streams.
+Functional programming is a style where we write code using functions as first-class objects, focus on immutability, 
+and avoid changing shared state. In Java, it’s supported mainly using lambda expressions, functional interfaces, and streams.
 
 ⭐2. Why functional programming is useful?
 Answer:
@@ -37,6 +53,11 @@ interface Demo {
     void show(); // only 1 abstract method
 }
 
+Examples from Java:
+Runnable
+Callable
+Comparator
+
 ⭐6. Why @FunctionalInterface annotation is used?
 Answer:
 It ensures the interface remains functional. If someone adds another abstract method, it gives compile-time error.
@@ -48,7 +69,7 @@ Yes. It can have any number of default and static methods.
 ⭐8. Examples of built-in functional interfaces?
 Answer:
 Predicate<T> → returns Boolean   (test)
-Function<T,R> → converts T to R  (apply)
+Function<T,R> → takes input, returns output  (apply)
 Consumer<T> → takes input, returns nothing  (accept)
 Supplier<T> → returns output, takes nothing (get)
 
@@ -96,7 +117,8 @@ No. Lambda always needs a functional interface type to work.
 Answer:
 Yes, but local variables must be effectively final (not modified after initialization).
 
----
+----------------------------------------------------------------------------------------------------------
+
 4) Optional Class (VERY Important)
 
 Optional class is container object used to avoid NullPointerException.
@@ -112,24 +134,8 @@ Optional.empty() → returns empty optional
    Optional<String> a = Optional.ofNullable(null); // OK
 // Optional<String> b = Optional.of(null); // ❌ NPE
 
----
-5) Method Reference (Syntax)
+------------------------------------------------------------------------------------------------------------
 
-✅ What is Method Reference?
-Method reference is a shorter way to write lambda when you are just calling an existing method.
-
-Types of Method Reference
-
-✅ 1) Static method reference
-ClassName::staticMethod
-
-✅ 2) Instance method reference
-object::method
-
-✅ 3) Constructor reference
-ClassName::new
-
----
 6) Stream API (Most Asked)
 
 ✅ What is Stream?
@@ -157,7 +163,7 @@ collection.stream()
     .intermediateOperations()
     .terminalOperation();
 
----
+----------------------------------------------------------------------------------------------------------------
  7) Intermediate Operations (Lazy)
 
 ✅ What are Intermediate Operations?
@@ -185,7 +191,7 @@ public class Main {
             .forEach(System.out::println);
     }
 }
----
+---------------------------------------------------------------------------------------------------------------
 8) Terminal Operations (Eager)
 
 ✅ What are Terminal Operations?
@@ -209,191 +215,34 @@ public class Main {
     }
 }
 
----
-9) Collectors (Most Important)
+---------------------------------------------------------------------------------------------------------------
 
-✅ What is Collectors?
-It converts stream back into a collection like List/Set/Map
-Collectors is used to collect stream output into:
-✅ List
-✅ Set
-✅ Map
-and do grouping/counting
+Stream API vs Collections
+Feature	      Collection	      Stream
+Nature	      Stores data	      Processes data
+Modification	Can modify	      Cannot modify
+Traversal	    External	        Internal
+Reusability	  Reusable	        Not reusable
 
-✅ Example: collect to List
-import java.util.*;
-import java.util.stream.*;
+---------------------------------------------------------------------------------------------------------------
+Key Features of Java 17 (LTS)
+👉 Stable version widely used in industry
 
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(1,2,3,4,5,6);
+Important features:
+Sealed Classes
+Pattern Matching (instanceof)
+Text Blocks (""" multi-line strings)
+New macOS rendering pipeline
+Improved garbage collectors
 
-        List<Integer> evenList = nums.stream()
-                .filter(x -> x % 2 == 0)
-                .collect(Collectors.toList());
+---------------------------------------------------------------------------------------------------------------
+Key Features of Java 21 (Latest LTS)
+👉 Very trending in interviews 🔥
 
-        System.out.println(evenList); // [2, 4, 6]
-    }
-}
+Key features:
 
-✅ Example: collect to Set (removes duplicates)
-import java.util.*;
-import java.util.stream.*;
-
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(10,10,20,30,30);
-
-        Set<Integer> unique = nums.stream()
-                .collect(Collectors.toSet());
-
-        System.out.println(unique); // [20, 10, 30]
-    }
-}
-
-✅ Example: groupingBy() (interview favorite)
-
-Group names by first letter:
-
-import java.util.*;
-import java.util.stream.*;
-
-public class Main {
-    public static void main(String[] args) {
-        List<String> names = Arrays.asList("Raj", "Ravi", "Amit", "Anu");
-
-        Map<Character, List<String>> group =
-                names.stream()
-                        .collect(Collectors.groupingBy(x -> x.charAt(0)));
-
-        System.out.println(group);
-    }
-}
-
-
-Output:
-
-{A=[Amit, Anu], R=[Raj, Ravi]}
-
----
-10) Parallel Stream
-
-✅ What is Parallel Stream?
-Parallel stream runs stream operations using multiple threads.
-
-How to use?
-list.parallelStream()
-
-Example
-import java.util.*;
-
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8);
-
-        nums.parallelStream()
-            .forEach(System.out::println);
-    }
-}
-📌 Important:
-❌ order may change
-✅ faster for big data
-
----
-11) Date and Time API (java.time)
-
-✅ Why java.time API?
-Old Date/Calendar were confusing.
-New API is:
-✅ easy
-✅ immutable
-✅ thread-safe
-
-✅ LocalDate (only date)
-import java.time.*;
-
-public class Main {
-    public static void main(String[] args) {
-        LocalDate d = LocalDate.now();
-        System.out.println(d);
-    }
-}
-
-✅ LocalTime (only time)
-import java.time.*;
-
-public class Main {
-    public static void main(String[] args) {
-        LocalTime t = LocalTime.now();
-        System.out.println(t);
-    }
-}
-
-✅ LocalDateTime (date + time)
-import java.time.*;
-
-public class Main {
-    public static void main(String[] args) {
-        LocalDateTime dt = LocalDateTime.now();
-        System.out.println(dt);
-    }
-}
-
-✅ Add/Subtract days
-LocalDate today = LocalDate.now();
-System.out.println(today.plusDays(5));
-System.out.println(today.minusDays(2));
-
----
-✅ 7) Reflection API (Simple)
-✅ What is Reflection?
-
-Reflection means:
-👉 Java can get class details at runtime
-like:
-
-class name
-methods
-fields
-
-Used in frameworks like:
-✅ Spring
-✅ Hibernate
-
-✅ Reflection Example (basic)
-class Student {
-    public void show() { 
-        System.out.println("Hello");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Student s = new Student();
-
-        Class c = s.getClass();  // reflection
-        System.out.println("Class Name: " + c.getName());
-    }
-}
-
-
------------------------------------------------------------------------
-
-Q18. Difference between filter() and map()?
-
-Answer:
-filter() → Select elements (boolean)
-map() → Transform elements
-
-filter → reduce size  
-map → change value
-
-Q19. Difference between map() and flatMap()?
-
-Answer:
-map() → One-to-one transformation
-flatMap() → Flattens nested structures
-
-Used heavily with collections of collections.
-
-map() transforms elements, filter() selects elements, and collect() converts the stream back to a collection.
+Virtual Threads (Project Loom) ⭐
+Pattern Matching for switch
+Record Patterns
+Sequenced Collections
+String Templates (Preview)
