@@ -51,20 +51,18 @@ class MyRunnable implements Runnable {
 }
 
 What to say in interview (1 line):
-“Runnable is preferred because it allows the class to extend another class and separates task logic from thread management.”
-
-Preferred: Runnable (better design).
+We prefer Runnable over Thread because Java does not support multiple inheritance, so implementing Runnable gives more flexibility.
 
 
 3️⃣ Difference between Thread class and Runnable interface?
 Answer:
 
-Thread Class			Runnable Interface
+Thread Class			            Runnable Interface
 
-Extends Thread class		Implements Runnable
-Cannot extend another class	Can extend another class
-Tightly coupled to threading	Better design, loose coupling
-Less flexible			More flexible & preferred
+Extends Thread class		        Implements Runnable
+Cannot extend another               class Can extend another class
+Tightly coupled to threading	    Better design, loose coupling
+Less flexible			            More flexible & preferred
 
 Example:
 In real projects, we use Runnable so the class can still extend another class while running in a thread.
@@ -83,7 +81,8 @@ Java thread lifecycle includes:
 5️⃣ What is Multithreading?
 
 Answer:
-Multithreading is the ability of a CPU to execute multiple threads concurrently, sharing the same memory space, to improve performance and responsiveness.
+Multithreading is a Java feature that allows multiple threads to execute concurrently within a single process. 
+It helps in better CPU utilization and improves performance, especially for tasks like I/O operations or background processing.
 
 Example:
 In a banking system, one thread can handle balance inquiry while another processes transactions.
@@ -99,6 +98,17 @@ run() → executes like a normal method
 👉 Golden line:
 Calling run() directly does not create a new thread.
 
+⭐ sleep()
+Thread.sleep(1000);
+Pauses thread
+
+⭐ join()
+t.join();
+Waits for thread to finish
+
+⭐ yield()
+Gives chance to other threads
+
 7️⃣ What is Concurrency?
 Answer:
 Concurrency means multiple tasks make progress at the same time. Tasks may not execute simultaneously but overlap in execution.
@@ -106,6 +116,10 @@ Concurrency means multiple tasks make progress at the same time. Tasks may not e
 8️⃣ What is Synchronization?
 Answer:
 Synchronization ensures that only one thread accesses a shared resource at a time to avoid data inconsistency.
+
+synchronized void increment() {
+    count++;
+}
 
 Example:
 When multiple threads try to update the same bank account balance, synchronization prevents incorrect results.
@@ -167,13 +181,6 @@ Synchronization ensures:
 Producer doesn’t overfill
 Consumer doesn’t consume empty buffer
 
-Example:
-Definition:
-Producer generates log messages, and Consumer processes them asynchronously.
-
-Example:
-In this system, the application thread produces logs while a separate thread writes them to storage.
-
 Contrast line:
 BlockingQueue handles synchronization internally, so we don’t need wait or notify.
 
@@ -210,7 +217,60 @@ volatile ensures latest value is read by all threads, no caching, does not guara
 Answer:
 Occurs when multiple threads access shared data simultaneously and the outcome depends on thread execution order.
 
-
 What is thread starvation?
 Answer:
 When a thread never gets CPU time due to priority or lock issues.
+
+
+✅ 50. What is Thread.sleep()? Does it release locks?
+Thread.sleep(2000);
+✔️ Meaning:
+Pauses the current thread for given time (milliseconds)
+Moves thread to TIMED WAITING state
+
+❌ NO — it does NOT release locks
+
+
+✅ 49. Create 2 threads — one sleeps, one runs
+✔️ Code (Simple & Clean)
+class SleepThread extends Thread {
+    public void run() {
+        try {
+            System.out.println("SleepThread started");
+            Thread.sleep(2000); // sleep for 2 seconds
+            System.out.println("SleepThread woke up");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class RunThread extends Thread {
+    public void run() {
+        System.out.println("RunThread is running");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SleepThread t1 = new SleepThread();
+        RunThread t2 = new RunThread();
+
+        t1.start();
+        t2.start();
+    }
+}
+
+✅ Expected Output
+SleepThread started
+RunThread is running
+SleepThread woke up
+
+🧠 What’s Happening?
+t1 → goes to sleep state for 2 seconds
+t2 → executes immediately
+Both run concurrently
+🎯 Interview Explanation (Important)
+
+Here, two threads are created. One thread uses Thread.sleep() to pause execution for a fixed time, 
+while the other thread executes normally. This demonstrates how multiple threads can run independently and concurrently.
