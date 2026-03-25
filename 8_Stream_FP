@@ -1,28 +1,4 @@
-1) Functional Programming (Java 8)
-
-⭐1. What is Functional Programming?
-Answer:
-Functional programming is a style where we write code using functions as first-class objects, focus on immutability, and avoid changing shared state. In Java, it’s supported mainly using lambda expressions, functional interfaces, and streams.
-
-⭐2. Why functional programming is useful?
-Answer:
-It makes code:
-cleaner and shorter
-easier to read
-easier to parallelize
-less bug-prone because we avoid modifying data
-
-⭐3. Is Java fully functional?
-Answer:
-No. Java is object-oriented primarily, but from Java 8 it supports functional programming features like lambdas and streams.
-
-⭐4. What is immutability in functional programming?
-Answer:
-Immutability means once a value/object is created, it cannot be changed. Instead of modifying, we create a new value.
-
---------------------------------------------------------------------------------------------------------------------------------
-
-2) Functional Interface (Very Important)
+Functional Interface (Very Important)
 
 ⭐5. What is a Functional Interface?
 Answer:
@@ -110,24 +86,7 @@ Optional.empty() → returns empty optional
    Optional<String> a = Optional.ofNullable(null); // OK
 // Optional<String> b = Optional.of(null); // ❌ NPE
 
----
-5) Method Reference (Syntax)
 
-✅ What is Method Reference?
-Method reference is a shorter way to write lambda when you are just calling an existing method.
-
-Types of Method Reference
-
-✅ 1) Static method reference
-ClassName::staticMethod
-
-✅ 2) Instance method reference
-object::method
-
-✅ 3) Constructor reference
-ClassName::new
-
----
 6) Stream API (Most Asked)
 
 ✅ What is Stream?
@@ -246,130 +205,5 @@ public class Main {
                 .collect(Collectors.toSet());
 
         System.out.println(unique); // [20, 10, 30]
-    }
-}
-
-✅ Example: groupingBy() (interview favorite)
-
-Group names by first letter:
-
-import java.util.*;
-import java.util.stream.*;
-
-public class Main {
-    public static void main(String[] args) {
-        List<String> names = Arrays.asList("Raj", "Ravi", "Amit", "Anu");
-
-        Map<Character, List<String>> group =
-                names.stream()
-                        .collect(Collectors.groupingBy(x -> x.charAt(0)));
-
-        System.out.println(group);
-    }
-}
-
-
-Output:
-
-{A=[Amit, Anu], R=[Raj, Ravi]}
-
----
-10) Parallel Stream
-
-✅ What is Parallel Stream?
-Parallel stream runs stream operations using multiple threads.
-
-How to use?
-list.parallelStream()
-
-Example
-import java.util.*;
-
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8);
-
-        nums.parallelStream()
-            .forEach(System.out::println);
-    }
-}
-📌 Important:
-❌ order may change
-✅ faster for big data
-
----
-11) Date and Time API (java.time)
-
-✅ Why java.time API?
-Old Date/Calendar were confusing.
-New API is:
-✅ easy
-✅ immutable
-✅ thread-safe
-
-✅ LocalDate (only date)
-import java.time.*;
-
-public class Main {
-    public static void main(String[] args) {
-        LocalDate d = LocalDate.now();
-        System.out.println(d);
-    }
-}
-
-✅ LocalTime (only time)
-import java.time.*;
-
-public class Main {
-    public static void main(String[] args) {
-        LocalTime t = LocalTime.now();
-        System.out.println(t);
-    }
-}
-
-✅ LocalDateTime (date + time)
-import java.time.*;
-
-public class Main {
-    public static void main(String[] args) {
-        LocalDateTime dt = LocalDateTime.now();
-        System.out.println(dt);
-    }
-}
-
-✅ Add/Subtract days
-LocalDate today = LocalDate.now();
-System.out.println(today.plusDays(5));
-System.out.println(today.minusDays(2));
-
----
-✅ 7) Reflection API (Simple)
-✅ What is Reflection?
-
-Reflection means:
-👉 Java can get class details at runtime
-like:
-
-class name
-methods
-fields
-
-Used in frameworks like:
-✅ Spring
-✅ Hibernate
-
-✅ Reflection Example (basic)
-class Student {
-    public void show() {
-        System.out.println("Hello");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Student s = new Student();
-
-        Class c = s.getClass();  // reflection
-        System.out.println("Class Name: " + c.getName());
     }
 }
