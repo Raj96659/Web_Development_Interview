@@ -1,146 +1,13 @@
-
 Major Features in Java 8
 
 👉 Java 8 was a game changer — it introduced functional programming concepts.
-
 Key features:
-
 Lambda Expressions → write shorter code
 Functional Interfaces → single abstract method interfaces
 Stream API → process collections easily
 Default & Static methods in interfaces
 Optional class → avoid null issues
 Date & Time API (java.time) → better than old Date
-
----------------------------------------------------------------------------------------------------------------------------
-Functional Programming
-
-1) Functional Programming (Java 8)
-
-⭐1. What is Functional Programming?
-Answer:
-Functional programming is a style where we write code using functions as first-class objects, focus on immutability, 
-and avoid changing shared state. In Java, it’s supported mainly using lambda expressions, functional interfaces, and streams.
-
-⭐2. Why functional programming is useful?
-Answer:
-It makes code:
-cleaner and shorter
-easier to read
-easier to parallelize
-less bug-prone because we avoid modifying data
-
-⭐3. Is Java fully functional?
-Answer:
-No. Java is object-oriented primarily, but from Java 8 it supports functional programming features like lambdas and streams.
-
-⭐4. What is immutability in functional programming?
-Answer:
-Immutability means once a value/object is created, it cannot be changed. Instead of modifying, we create a new value.
-
---------------------------------------------------------------------------------------------------------------------------------
-
-2) Functional Interface (Very Important)
-
-⭐5. What is a Functional Interface?
-Answer:
-A functional interface is an interface with exactly one abstract method.
-It can have multiple default/static methods, but only one abstract.
-
-Example:
-@FunctionalInterface
-interface Demo {
-    void show(); // only 1 abstract method
-}
-
-Examples from Java:
-Runnable
-Callable
-Comparator
-
-⭐6. Why @FunctionalInterface annotation is used?
-Answer:
-It ensures the interface remains functional. If someone adds another abstract method, it gives compile-time error.
-
-⭐7. Can a functional interface have default methods?
-Answer:
-Yes. It can have any number of default and static methods.
-
-⭐8. Examples of built-in functional interfaces?
-Answer:
-Predicate<T> → returns Boolean   (test)                    # Predicate<Integer> p = x -> x > 10;
-Function<T,R> → takes input, returns output  (apply)       # Function<Integer, Integer> f = x -> x * 2;
-Consumer<T> → takes input, returns nothing  (accept)       # Consumer<String> c = s -> System.out.println(s);
-Supplier<T> → returns output, takes nothing (get)          # Supplier<Integer> s = () -> 100;
-
-⭐9. Difference between Predicate and Function?
-Answer:
-Predicate → used for conditions / filtering, returns boolean
-Function → used for transformation, returns value
-
-⭐10. Why we need Functional Interface
-Answer : We need functional interfaces because they provide a single abstract method, which allows Java to use lambda expressions 
-and pass behavior as an argument without ambiguity.
-
----------------------------------------------------------------------------------------------------------------------
-3) Lambda Expressions
-
-⭐11. What is Lambda Expression?
-Answer:
-Lambda is short form of method(anonymous function).
-Lambda is a short way to implement a functional interface without creating a class.
-Concise way to implement functional interface.
-
-Example:
-Runnable r = () -> System.out.println("Hello");
-
-Instead of:
-Runnable r = new Runnable() {
-    public void run() {
-        System.out.println("Hello");
-    }
-};
-
-
-⭐12. Why lambda was introduced?
-Answer:
-To reduce boilerplate code and support functional programming in Java.
-
-⭐13. Syntax of lambda?
-Answer:
-(parameters) -> expression/body
-(parameters) -> {statements}
-
-Example:
- 	(a, b) -> a + b
- 	x -> x*x
- 	() -> System.out.println("Hello")
-
-⭐14. Can lambda be used without functional interface?
-Answer:
-No. Lambda always needs a functional interface type to work.
-
-
-⭐15. Can lambda access local variables?
-Answer:
-Yes, but local variables must be effectively final (not modified after initialization).
-
-----------------------------------------------------------------------------------------------------------
-
-4) Optional Class (VERY Important)
-
-Optional class is container object used to avoid NullPointerException.
-It helps when value may be null.
-
-Difference between of(), ofNullable(), empty()?
-
-✅ Answer:
-Optional.of(value) → throws NullPointerException if value is null
-Optional.ofNullable(value) → safe even if value is null
-Optional.empty() → returns empty optional
-
-   Optional<String> a = Optional.ofNullable(null); // OK
-// Optional<String> b = Optional.of(null); // ❌ NPE
 
 ------------------------------------------------------------------------------------------------------------
 
@@ -161,11 +28,6 @@ no manual loops needed
 Example List:
 List<Integer> nums = Arrays.asList(1,2,3,4,5,6);
 
-With stream, we can say:
-filter even numbers
-convert them
-print/store result
-
 ✅ Stream basic structure :
 collection.stream()
     .intermediateOperations()
@@ -180,25 +42,31 @@ Intermediate operations are steps in between.
 📌 They are lazy → they don’t execute until terminal operation is called.
 
 Common Intermediate Operations
-✅ filter() → select elements
-✅ map() → change elements
+
+✅ filter() → select elements, filter returns only elements matching condition
+list.stream()
+    .filter(x -> x % 2 == 0)
+
+✅ map() → Used to transform data, map changes each element
+list.stream()
+    .map(x -> x * x)
+
 ✅ sorted() → sort
+list.stream()
+    .sorted()
+    .forEach(System.out::println);
+
 ✅ distinct() → remove duplicates
+list.stream()
+    .distinct()
+    .forEach(System.out::println);
+
 ✅ limit() → take first few
+list.stream()
+    .limit(3)
+    .forEach(System.out::println);
+
 ✅ skip() → skip first few
-
-Example
-import java.util.*;
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(1,2,3,4,5,6);
-
-        list.stream()
-            .filter(x -> x % 2 == 0)
-            .map(x -> x * x)
-            .forEach(System.out::println);
-    }
-}
 ---------------------------------------------------------------------------------------------------------------
 8) Terminal Operations (Eager)
 
@@ -207,21 +75,19 @@ They end the stream and give final result.
 
 Common Terminal operations:
 ✅ forEach() → print/perform action
-✅ collect() → store result into List/Set/Map
+list.stream()
+    .forEach(System.out::println);
+
+✅ collect() → 👉 Convert stream → collection
+list.stream()
+    .collect(Collectors.toList());
+
 ✅ count() → count elements
+long count = list.stream()
+                 .count();
+
 ✅ reduce() → sum/product
 ✅ min(), max()
-
-Example
-import java.util.*;
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(10,20,30,40);
-
-        long c = nums.stream().count(); // terminal
-        System.out.println(c); // 4
-    }
-}
 
 ---------------------------------------------------------------------------------------------------------------
 
@@ -231,6 +97,22 @@ Nature	      Stores data	      Processes data
 Modification	Can modify	      Cannot modify
 Traversal	    External	        Internal
 Reusability	  Reusable	        Not reusable
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+3) Lambda Expressions
+
+⭐11. What is Lambda Expression?
+Answer:
+Lambda is a short way to implement a functional interface without creating a class. Functional interface is interface with only one abstract method.
+Concise way to implement functional interface.
+
+x -> x * 2
+
+⭐12. Why lambda was introduced?
+Answer:
+To reduce boilerplate code and support functional programming in Java.
 
 ---------------------------------------------------------------------------------------------------------------
 Key Features of Java 17 (LTS)
