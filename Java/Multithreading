@@ -98,20 +98,6 @@ run() → executes like a normal method
 👉 Golden line:
 Calling run() directly does not create a new thread.
 
-⭐ sleep()
-Thread.sleep(1000);
-Pauses thread
-
-⭐ join()
-t.join();
-Waits for thread to finish
-
-⭐ yield()
-Gives chance to other threads
-
-7️⃣ What is Concurrency?
-Answer:
-Concurrency means multiple tasks make progress at the same time. Tasks may not execute simultaneously but overlap in execution.
 
 8️⃣ What is Synchronization?
 Answer:
@@ -147,54 +133,6 @@ Thread A holds Lock 1 and waits for Lock 2, while Thread B holds Lock 2 and wait
 👉 Interview trick:
 Deadlock can be prevented by breaking any one of these conditions.
 
-1️⃣1️⃣ What is Livelock?
-Answer:
-Livelock occurs when threads are active but unable to make progress because they keep responding to each other.
-
-Example:
-Two threads keep retrying to give up a resource to each other, resulting in no task completion.
-
-👉 Difference line:
-
-Deadlock = threads stuck
-Livelock = threads active but useless
-
-1️⃣2️⃣ Difference between Deadlock and Livelock?
-Answer:
-
-Deadlock			Livelock
-Threads blocked	Threads running
-No CPU usage		High CPU usage
-Waiting forever		Continuously changing state
-
-⭐⭐⭐ MOST MOST IMPORTANT (Producer–Consumer)
-
-1️⃣3️⃣ What is Producer–Consumer Problem?
-
-Answer:
-It’s a classic concurrency problem where:
-Producer produces data
-Consumer consumes data
-Both share a common buffer
-
-Synchronization ensures:
-Producer doesn’t overfill
-Consumer doesn’t consume empty buffer
-
-Contrast line:
-BlockingQueue handles synchronization internally, so we don’t need wait or notify.
-
-1️⃣4️⃣ How is Producer–Consumer solved in Java?
-
-Answer:
-Using:
-
-wait()
-notify() / notifyAll()
-Synchronized blocks
-
-👉 Modern approach:
-Use BlockingQueue from java.util.concurrent package.
 
 ⭐⭐ MOST IMPORTANT
 
