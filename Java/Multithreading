@@ -33,8 +33,6 @@ class MyThread extends Thread {
     }
 }
 
-What to say in interview (1 line):
-“Here I extend the Thread class and override the run method. Calling start() creates a new thread and internally invokes run().”
 
 b. Implementing Runnable interface
 
@@ -63,9 +61,6 @@ Extends Thread class		        Implements Runnable
 Cannot extend another               class Can extend another class
 Tightly coupled to threading	    Better design, loose coupling
 Less flexible			            More flexible & preferred
-
-Example:
-In real projects, we use Runnable so the class can still extend another class while running in a thread.
 
 4️⃣ What are the states of a Thread?
 Answer:
